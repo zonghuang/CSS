@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理多个类</title>
+    <style>
+        .base-box {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+            padding: 3px 3px 3px 7px;
+        }
+
+        .important {
+            font-weight: bold;
+        }
+
+        .editor-note {
+            background-color: #9999ff;
+            border-left: 6px solid #333399;
+        }
+
+        .warning {
+            background-color: #ff9999;
+            border-left: 6px solid #993333;
+        }
+    </style>
+</head>
+<body>
+<p class="base-box important">My first paragraph.</p>
+<p class="base-box editor-note">My second paragraph.</p>
+<p class="base-box warning">My third paragraph</p>
+</body>
+
+<script>
+    var htmlInput = document.querySelector(".html-input");
+    var cssInput = document.querySelector(".css-input");
+    var reset = document.getElementById("reset");
+    var htmlCode = htmlInput.value;
+    var cssCode = cssInput.value;
+    var output = document.querySelector(".output");
+    var solution = document.getElementById("solution");
+
+    var styleElem = document.createElement('style');
+    var headElem = document.querySelector('head');
+    headElem.appendChild(styleElem);
+
+    function drawOutput() {
+        output.innerHTML = htmlInput.value;
+        styleElem.textContent = cssInput.value;
+    }
+
+    reset.addEventListener("click", function () {
+        htmlInput.value = htmlCode;
+        cssInput.value = cssCode;
+        drawOutput();
+    });
+
+    solution.addEventListener("click", function () {
+        htmlInput.value = '<p class="base-box warning important">My first paragraph.</p>\n\n<p class="">My second paragraph.</p>\n\n<p class="">My third paragraph</p>';
+        cssInput.value = cssCode;
+        drawOutput();
+    });
+
+    htmlInput.addEventListener("input", drawOutput);
+    cssInput.addEventListener("input", drawOutput);
+    window.addEventListener("load", drawOutput);
+
+</script>
+
+</html>

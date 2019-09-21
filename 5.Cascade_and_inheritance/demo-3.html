@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于规则混合的一点注记</title>
+    <style>
+        /* specificity: 0002 */
+        p strong {
+            background-color: khaki;
+            color: green;
+        }
+
+        /* specificity: 0001 */
+        strong {
+            text-decoration: underline;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<p>I'm <strong>important</strong></p>
+</body>
+</html>
